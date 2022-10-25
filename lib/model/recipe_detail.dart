@@ -33,17 +33,54 @@ class _RecipeDetailState extends State<RecipeDetail> {
             // 6
             Text(
               widget.recipe.label,
-              style: const TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             Expanded(
               child: ListView.builder(
                 itemCount: widget.recipe.ingredients.length,
                 itemBuilder: (BuildContext context, int index) {
                   final ingredient = widget.recipe.ingredients[index];
-                  return Text(
-                      '${ingredient.quantity} ${ingredient.measure} ${ingredient.name}');
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Card(
+                      child: Text(
+                        '${ingredient.quantity * _sliderVal} ${ingredient.measure} ${ingredient.name}',
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  );
                 },
               ),
+            ),
+            const Text(
+              'Shop Ingridients Here',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            SafeArea(
+              child: Row(
+                children: const <Widget>[
+                  Text(
+                    'Add To Cart',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  IconButton(
+                    onPressed: null,
+                    icon: Icon(
+                      Icons.add_shopping_cart_outlined,
+                      size: 50,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             Slider(
               min: 1,
